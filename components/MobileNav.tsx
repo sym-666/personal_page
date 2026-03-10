@@ -8,6 +8,7 @@ import headerNavLinks from '@/data/headerNavLinks'
 
 const MobileNav = () => {
   const [navShow, setNavShow] = useState(false)
+  const [mounted, setMounted] = useState(false)
   const navRef = useRef(null)
 
   const onToggleNav = () => {
@@ -23,8 +24,13 @@ const MobileNav = () => {
   }
 
   useEffect(() => {
+    setMounted(true)
     return clearAllBodyScrollLocks
-  })
+  }, [])
+
+  if (!mounted) {
+    return null
+  }
 
   return (
     <>
