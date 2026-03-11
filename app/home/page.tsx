@@ -1,9 +1,12 @@
 import Link from '@/components/Link'
 import headerNavLinks from '@/data/headerNavLinks'
+import TypingEffect from '@/components/TypingEffect'
 
 export default function HomePage() {
   return (
     <div className="space-y-20 pt-8 pb-12">
+      <TypingEffect text="Shi Yiming Blog" />
+
       {/* <nav
         aria-label="Home sections"
         className="sticky top-4 z-10 -mt-2 flex flex-wrap gap-2 rounded-full border border-gray-200 bg-white/80 px-3 py-2 text-sm text-gray-600 shadow-sm backdrop-blur dark:border-gray-800 dark:bg-gray-950/80 dark:text-gray-300"
