@@ -7,20 +7,16 @@ interface Project {
 
 const projectsData: Project[] = [
   {
-    title: 'A Search Engine',
-    description: `What if you could look up any information in the world? Webpages, images, videos
-    and more. Google has many features to help you find exactly what you're looking
-    for.`,
-    imgSrc: '/static/images/google.png',
-    href: 'https://www.google.com',
+    title: 'A sport tracker app',
+    description: `Track your sports activities and monitor your performance with our intuitive sport tracker app.`,
+    imgSrc: '/static/images/sport-tracker.png',
+    href: '/projects/sport-tracker',
   },
   {
-    title: 'The Time Machine',
-    description: `Imagine being able to travel back in time or to the future. Simple turn the knob
-    to the desired date and press "Go". No more worrying about lost keys or
-    forgotten headphones with this simple yet affordable solution.`,
-    imgSrc: '/static/images/time-machine.jpg',
-    href: '/blog/the-time-machine',
+    title: 'AI Intelligent Drug Detection Platform',
+    description: `An AI-powered platform designed to detect and analyze drug interactions, providing insights for safer medication management.`,
+    imgSrc: '/static/images/drug.png',
+    href: '/projects/drug-detection',
   },
 ]
 
