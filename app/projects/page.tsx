@@ -13,7 +13,9 @@ export default function Projects() {
             Projects
           </h1>
           <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
-            Showcase your projects with a hero image (16 x 9)
+            my personal projects, including web applications, machine learning models, and
+            open-source contributions. Each project reflects my passion for technology and my
+            commitment to continuous learning and innovation.
           </p>
         </div>
         <div className="container py-12">

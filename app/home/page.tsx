@@ -31,21 +31,22 @@ export default function HomePage() {
         <div className="relative grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
           <div className="space-y-6">
             <p className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white/70 px-3 py-1 text-xs font-semibold tracking-[0.2em] text-gray-600 uppercase shadow-sm dark:border-gray-700 dark:bg-gray-900/70 dark:text-gray-300">
-              Notes for builders
+              Notes for Shiyiming
             </p>
             <h1 className="text-4xl font-extrabold tracking-tight text-gray-950 sm:text-5xl md:text-6xl dark:text-white">
-              Craft ideas into products, one clear post at a time.
+              A journal of engineering, daily study and product experiments.
             </h1>
             <p className="text-lg leading-relaxed text-gray-600 dark:text-gray-300">
-              This is a home for practical guides, experiments, and progress logs. Expect thoughtful
-              breakdowns, actionable checklists, and the occasional deep dive.
+              A collection of insights, learnings, and reflections from my journey as a software
+              engineer. Here, I document my experiments, share my thoughts on technology, and
+              explore the intersection of engineering and product design.
             </p>
             <div className="flex flex-wrap gap-3">
               <Link
                 href="/blog"
                 className="bg-primary-600 hover:bg-primary-700 rounded-full px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition"
               >
-                Explore the blog
+                Explore my blog
               </Link>
               <Link
                 href="/projects"
@@ -74,20 +75,20 @@ export default function HomePage() {
           <div className="grid gap-4 sm:grid-cols-2">
             {[
               {
-                title: 'Strategy notes',
-                text: 'Roadmaps, product thinking, and decisions worth revisiting.',
+                title: 'Tech Deep Dives',
+                text: 'System design, architecture, and exploring how things work under the hood.',
               },
               {
-                title: 'Design systems',
-                text: 'Patterns, tokens, and scalable UI habits you can copy.',
+                title: 'Daily Study',
+                text: 'Notes from courses, books, and daily learning sessions.',
               },
               {
-                title: 'Engineering logs',
-                text: 'Shipping lessons, perf audits, and code archaeology.',
+                title: 'Engineering Logs',
+                text: 'Shipping lessons, debugging adventures, and code archaeology.',
               },
               {
-                title: 'Team rituals',
-                text: 'How I plan weeks, run reviews, and keep momentum.',
+                title: 'Product Experiments',
+                text: 'Side projects, MVP building, and lessons from failures and successes.',
               },
             ].map((card) => (
               <div
@@ -115,18 +116,18 @@ export default function HomePage() {
           <div className="mt-6 grid gap-4">
             {[
               {
-                title: 'Launch playbook',
-                desc: 'From positioning to post-launch retrospectives.',
+                title: 'Frontend Development',
+                desc: 'React, Next.js, and web performance optimization.',
                 href: '/blog',
               },
               {
-                title: 'Design critique kit',
-                desc: 'Frameworks for feedback that moves the work forward.',
+                title: 'Backend & Architecture',
+                desc: 'Node.js, databases, and building scalable APIs.',
                 href: '/blog',
               },
               {
-                title: 'Build in public',
-                desc: 'Weekly updates and experiments on real projects.',
+                title: 'Build in Public',
+                desc: 'Weekly updates and experiments on my side projects.',
                 href: '/projects',
               },
             ].map((item) => (
@@ -159,9 +160,9 @@ export default function HomePage() {
           <ul className="mt-6 space-y-4 text-sm">
             {[
               'Document the decision, not just the outcome.',
-              'Prefer small releases with loud feedback loops.',
-              'Keep the stack boring, keep the ideas sharp.',
-              'Ship with a checklist, learn with a journal.',
+              'Always keep learning and stay curious.',
+              'Keep the stack simple, focus on the user experience.',
+              'Code is just a tool; solving problems is the goal.',
             ].map((item) => (
               <li key={item} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
                 {item}
@@ -174,20 +175,20 @@ export default function HomePage() {
       <section id="highlights" className="grid gap-6 lg:grid-cols-3">
         {[
           {
-            title: 'Deep-dive essays',
+            title: 'Tech Deep Dives',
             text: 'Long-form explorations that connect strategy, design, and engineering.',
             link: '/blog',
             label: 'Browse essays',
           },
           {
-            title: 'Project snapshots',
+            title: 'Project Snapshots',
             text: 'What I am building now, with timelines and constraints.',
             link: '/projects',
             label: 'See projects',
           },
           {
-            title: 'Speaking and notes',
-            text: 'Slides, talks, and short reads you can skim in minutes.',
+            title: 'Reading & Resources',
+            text: 'Books, talks, and short reads you can skim in minutes.',
             link: '/about',
             label: 'Get the notes',
           },
@@ -209,7 +210,7 @@ export default function HomePage() {
         ))}
       </section>
 
-      <section
+      {/* <section
         id="subscribe"
         className="rounded-3xl border border-gray-200 bg-gray-50 p-8 dark:border-gray-800 dark:bg-gray-900"
       >
@@ -237,7 +238,7 @@ export default function HomePage() {
             </Link>
           </div>
         </div>
-      </section>
+      </section> */}
     </div>
   )
 }

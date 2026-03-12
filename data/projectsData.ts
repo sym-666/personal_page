@@ -18,6 +18,18 @@ const projectsData: Project[] = [
     imgSrc: '/static/images/drug.png',
     href: '/projects/drug-detection',
   },
+  {
+    title: 'Open-source Tdesign(a tencent UI library) project',
+    description: `An open-source project aimed at creating a modern design system for building responsive and accessible web applications.`,
+    imgSrc: '/static/images/Tdesign.png',
+    href: '/projects/Tdesign',
+  },
+  {
+    title: 'cbaldur——a Nuclear fusion computing platform',
+    description: `Cbaldur is a cutting-edge nuclear fusion computing platform designed to simulate and analyze fusion reactions, providing valuable insights for researchers and scientists in the field of nuclear energy.`,
+    imgSrc: '/static/images/cbaldur.png',
+    href: '/projects/cbaldur',
+  },
 ]
 
 export default projectsData
