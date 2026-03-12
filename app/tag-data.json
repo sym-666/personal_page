@@ -1,10 +1,9 @@
 {
+  "cdn": 2,
+  "network": 2,
+  "performance": 2,
+  "nextjs": 1,
+  "rsc": 1,
   "算法": 1,
-  "并查集": 1,
-  "next-js": 1,
-  "tailwind": 1,
-  "guide": 1,
-  "markdown": 1,
-  "code": 1,
-  "features": 1
+  "并查集": 1
 }
