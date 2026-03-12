@@ -1,0 +1,88 @@
+---
+title: Next.js——性能加速与稳定性思考
+date: '2026-01-21'
+lastmod: '2026-03-12'
+tags: ['cdn', 'network', 'performance', 'nextjs', 'rsc']
+draft: false
+summary: 从CDN的就近分发到Next.js的RSC架构，理解性能优化与稳定性治理的关键点。
+---
+
+## 二. Next.js介绍
+
+Next.js是一个基于React的开源框架，用于构建高性能、可生产的现代Web应用。它提供服务端渲染（SSR）、静态站点生成（SSG）、自动路由、代码优化、API路由等开箱即用功能，极大地简化了全栈开发，让开发者能专注于业务逻辑，无需繁琐配置，即可快速交付优化且SEO友好的应用。
+
+对于Next.js而言，主要特点之一是引入了RSC组件。
+
+### RSC (React Server Components)
+
+RSC是React团队和Next.js团队推出的一种全新的组件架构。简单来说，RSC允许React组件仅在服务器端运行和渲染，而不需要将这些组件的代码（JavaScript）发送到浏览器。
+
+RSC可以直接连接数据库、读取文件系统或调用内部微服务，无需经过API接口转发。这带来性能与开发体验提升，同时也要求更清晰的安全边界。
+
+### 执行流程
+
+- 执行组件函数：执行组件的函数，比如连接数据库、读取文件、计算数据。
+- 解析组件树：将React组件树“渲染”成一种中间结构。
+  - 如果是原生标签（如div、p），它保留下来。
+  - 如果是Client Component（客户端组件），它不执行该组件，而是留下一个“占位符”。
+  - 服务器组件的JavaScript代码留在服务器，完全不会打包发送给客户端。
+
+### 发送的内容
+
+发送的不是最终HTML（像传统SSR那样），也不是JS代码。发送的是一种特殊的序列化数据格式，称为RSC Payload。React可以在客户端解析它，并将新的内容无缝合并到当前的DOM树中。
+
+下面是一个结构化示意（非真实协议数据）：
+
+```json
+[
+  "1:I[\"app/page.js\", ...]",
+  "2:[\"div\", {\"children\":[[\"h1\", \"欢迎回来\"],[\"$L1\", null]]}]"
+]
+```
+
+### RSC的优点
+
+- 直接访问后端：RSC可以直接连接数据库、读取文件系统或调用内部微服务，无需经过API接口转发。
+- 零打包体积：RSC的代码只在服务器运行，永远不会被发送到浏览器。引入的大型依赖库不会增加用户下载文件大小。
+
+示例代码：
+
+```tsx
+// app/blog/[id]/page.tsx
+// 这是一个RSC（默认）
+
+import db from 'lib/db'
+import { parseMarkdown } from 'some-heavy-markdown-library'
+import CommentSection from './CommentSection'
+
+export default async function BlogPost({ params }) {
+  const { id } = params
+
+  const post = await db.query('SELECT * FROM posts WHERE id = ?', [id])
+  const contentHtml = parseMarkdown(post.content)
+
+  return (
+    <article>
+      <h1>{post.title}</h1>
+      <div dangerouslySetInnerHTML={{ __html: contentHtml }} />
+      <CommentSection postId={id} />
+    </article>
+  )
+}
+```
+
+### 服务器渲染压力与优化
+
+如果不加以优化确实是的，但是Next.js具有缓存机制可以极大减小服务器渲染的压力。对于静态内容仅需要渲染一次，后面需要的时候只需使用生成好的文件。对于一些需要频繁修改的组件可以使用客户端组件来替代（Next也支持混合渲染方式）。
+
+对于简单的HTML拼接任务服务器处理速度很快，相反由于减少了大量的API调用，整体的性能或许会更高。再不济，还可以使用CDN来挽救一下，这又不得不提到最大的Cloudflare了。
+
+### Next.js的“满分”事故
+
+这次事故的原因是因为RSC即使在服务器运行，客户端仍可以通过发送特制的请求头来指示服务器执行相应的操作，暴露出不期望的执行路径。为避免传播可复现的攻击细节，这里不展开具体利用代码，仅强调以下风险控制要点：
+
+- 服务端渲染的安全边界需要明确，避免未授权的执行路径。
+- 关键运行链路必须加入严格的鉴权、输入校验与日志审计。
+- 对外暴露的功能应具备速率限制与异常检测。
+
+性能优化与安全治理应当并行推进，才能真正达到稳定可用的“高分”。
