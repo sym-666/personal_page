@@ -1,9 +1,14 @@
 {
   "cdn": 2,
-  "network": 2,
+  "network": 1,
   "performance": 2,
+  "计算机网络": 1,
   "nextjs": 1,
   "rsc": 1,
+  "机器学习": 1,
+  "cnn": 1,
+  "computer-vision": 1,
+  "pytorch": 1,
   "算法": 1,
   "并查集": 1
 }
